@@ -18,7 +18,7 @@ tags = {
 resource "aws_subnet" "sub1" {
   vpc_id                  = aws_vpc.simple_vpc.id
   cidr_block              = var.sub1_cidr
-  map_public_ip_on_launch = "true" 
+  map_public_ip_on_launch = "false" 
   availability_zone       = var.az1
 
 }
@@ -187,7 +187,7 @@ resource "aws_security_group" "ec2_allow_rule" {
 resource "aws_instance" "red_hat_ec2" {
   ami                    = var.ami
   instance_type          = var.instance_type
-  subnet_id              = aws_subnet.sub2.id
+  subnet_id              = aws_subnet.sub3.id
   vpc_security_group_ids = ["${aws_security_group.ec2_allow_rule.id}"]
   key_name               = aws_key_pair.newkey.id
   tags = {
